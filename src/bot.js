@@ -18,8 +18,14 @@ client.on('message', (message) => {
     if (CMD_NAME === 'kick') {
       if (args.length === 0) return message.reply('Please provide an ID')
       const member = message.guild.members.cache.get(args[0])
-
-      console.log(member)
+      if (member) {
+        member
+          .kick()
+          .then((member) => message.channel.send(`${member} was kicked.`))
+          .catch((err) => message.channel.send('I do not have permissions :('))
+      } else {
+        message.channel.send('That member was not found')
+      }     
     }
   }
 })
