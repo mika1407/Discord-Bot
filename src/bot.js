@@ -10,9 +10,15 @@ client.on('ready', () => {
 
 client.on('message', (message) => {
   if (message.author.bot) return;
-  console.log(`[${message.author.tag}]: ${message.content}` )
-  if (message.content === 'hello') {
-    message.channel.send('hello')
+  if (message.content.startsWith(PREFIX)) {
+    const [CMD_NAME, ...args] = message.content
+      .trim()
+      .substring(PREFIX.length)
+      .split(/\s+/)
+  
+  if (CMD_NAME === 'kick') {
+    message.channel.send('Kicked the user')
+  }
   }
 })
 
