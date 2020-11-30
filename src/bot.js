@@ -8,9 +8,10 @@ client.on('ready', () => {
 })
 
 client.on('message', (message) => {
+  if (message.author.bot) return;
   console.log(`[${message.author.tag}]: ${message.content}` )
   if (message.content === 'hello') {
-    message.reply('hello there!')
+    message.channel.send('hello')
   }
 })
 
